@@ -1,0 +1,15 @@
+[Unit]
+Description = server for managing card detection tasks
+Requires=redis.service
+After=redis.service
+Requires=detection_worker.service
+After=detection_worker.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/detection_server/
+ExecStart=/opt/detection_server/tasks_manager.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

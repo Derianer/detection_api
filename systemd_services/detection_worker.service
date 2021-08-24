@@ -1,0 +1,13 @@
+[Unit]
+Description=Worker for card_detection service
+Requires=redis.service
+After=redis.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/detection_server/
+ExecStart=/opt/detection_server/start_worker.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
